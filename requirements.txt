@@ -1,0 +1,10 @@
+-r requirements.txt -i https://pypi.douban.com/simple
+beautifulsoup4==4.9.1
+html5lib==1.0.1
+httpx==0.16.1
+lxml==4.4.1
+requests==2.22.0
+urllib3==1.25.5
+urlparser==0.1.2
+aiofiles==0.5.0
+cchardet==2.1.6

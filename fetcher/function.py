@@ -8,7 +8,6 @@ import random
 
 import aiofiles
 import time
-import arrow
 import cchardet
 import httpx
 
@@ -41,13 +40,6 @@ def get_random_user_agent() -> str:
     :return: Random user agent string.
     """
     return random.choice(_get_data('user_agents.txt', CONFIG.USER_AGENT))
-
-
-def get_time() -> str:
-    utc = arrow.utcnow()
-    local = utc.to(CONFIG.TIMEZONE)
-    time = local.format("YYYY-MM-DD HH:mm:ss")
-    return time
 
 
 def get_netloc(url):
