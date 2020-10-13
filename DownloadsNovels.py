@@ -73,7 +73,7 @@ def get_search(name):
 if __name__ == '__main__':
     limit = 2
     name = '末日后全人类成为了经验值'
-    ouput_path = '../result/'
+    ouput_path = 'result/'
     res = get_search(name)
     print('*'*20 + '检索到全部源' + '*'*20)
     for i in res.get('result', {}):
