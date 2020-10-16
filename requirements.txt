@@ -8,3 +8,4 @@ urllib3==1.25.5
 urlparser==0.1.2
 aiofiles==0.5.0
 cchardet==2.1.6
+fake-useragent==0.1.11

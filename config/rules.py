@@ -202,7 +202,7 @@ LATEST_RULES = {
 }
 
 RULES = {
-    # demo  'name': Rules('content_url', {chapter_selector}, {content_selector})
+    # background  'name': Rules('content_url', {chapter_selector}, {content_selector})
     # content_url=1 表示章节链接使用本身自带的链接，不用拼接
     # content_url=0 表示章节网页需要当前页面url拼接
     # 'www.biqule.com': Rules('www.biqule.com', {'class': 'box_con'},{}),

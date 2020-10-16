@@ -39,11 +39,13 @@ class BaiduNovels(BaseNovels):
                 is_recommend = 1 if netloc in self.latest_rules.keys() else 0
 
                 return {'title': title,
-                        'url': real_str_url.replace('index.html', ''),
+                        'url': real_str_url.replace('index_demo.html', ''),
                         'is_parse': is_parse,
                         'is_recommend': is_recommend,
                         'latest_chapter_name': latest_chapter_name,
-                        'netloc': netloc}
+                        'netloc': netloc,
+                        'source': '百度'
+                        }
             else:
                 return None
         except Exception as e:
@@ -56,8 +58,9 @@ class BaiduNovels(BaseNovels):
         :return:
         """
         try:
+            import time
             headers = {'user-agent': get_random_user_agent()}
-            response = httpx.get(url,  allow_redirects=True, verify=False)
+            response = httpx.get(url,headers=headers,  allow_redirects=True, verify=False, timeout=5)
             self.logger.info('Parse url: {}'.format(response.url))
             url = response.url if response.url else None
             return url

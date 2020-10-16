@@ -22,7 +22,7 @@ class BaseNovels:
         self.logger = logger if logger else LOGGER
         self.rules = RULES
 
-    def fetch_url(self, url, params, headers):
+    def fetch_url(self, url, params=None, headers=None, data=None, method='GET'):
         """
         公共抓取函数
         :param client:
@@ -31,15 +31,7 @@ class BaseNovels:
         :return:
         """
         try:
-            # with httpx.get(url, params=params, headers=headers, timeout=60) as response:
-            #     assert response.status_code == 200
-            #     LOGGER.info('Task url: {}'.format(response.url))
-            #     content = response.content
-            #     charset = cchardet.detect(content)
-            #     html_doc = content.decode(charset['encoding'])
-            #     return html_doc
-            url = url+'?'+ urlencode(params)
-            response = httpx.get(url, headers=headers, timeout=60)
+            response = httpx.request(method=method, url=url, params=params, data=data, headers=headers, timeout=60, allow_redirects=True)
             assert response.status_code == 200
             LOGGER.info('Task url: {}'.format(response.url))
             content = response.content

@@ -10,7 +10,7 @@ import aiofiles
 import time
 import cchardet
 import httpx
-
+from fake_useragent import UserAgent
 from urllib.parse import urlparse
 
 from config import LOGGER, CONFIG
@@ -39,7 +39,8 @@ def get_random_user_agent() -> str:
     Get a random user agent string.
     :return: Random user agent string.
     """
-    return random.choice(_get_data('user_agents.txt', CONFIG.USER_AGENT))
+    ua = UserAgent()
+    return ua.random
 
 
 def get_netloc(url):

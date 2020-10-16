@@ -44,11 +44,12 @@ class SoNovels(BaseNovels):
             new_chapter = html.select('.res-desc a')
             latest_chapter_name = new_chapter[0].get_text() if new_chapter else '未知'
             return {'title': title,
-                    'url': url.replace('index.html', '').replace('Index.html', ''),
+                    'url': url.replace('index_demo.html', '').replace('Index.html', ''),
                     'is_parse': is_parse,
                     'is_recommend': is_recommend,
                     'latest_chapter_name': latest_chapter_name,
-                    'netloc': netloc}
+                    'netloc': netloc,
+                    'source': 'so'}
         except Exception as e:
             self.logger.exception(e)
             return None

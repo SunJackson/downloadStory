@@ -17,3 +17,4 @@ class Config():
     BAIDU_RN = 15
     SO_URL = "https://www.so.com/s"
     BY_URL = "https://cn.bing.com/search"
+    DUCKGO_URL = "https://html.duckduckgo.com/html/"
