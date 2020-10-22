@@ -192,6 +192,8 @@ LATEST_RULES = {
     "www.luoqiuzw.com": PLAN_01,
     "www.yousheng8.com": PLAN_01,
     "www.mht.tw": PLAN_01,
+    "www.cc148.com": PLAN_01,
+    "www.hongyeshuzhai.com": PLAN_01,
 
     # 其他规则
     # "www.50331.net": LatestRules(
@@ -216,6 +218,8 @@ RULES = {
     'www.luoqiuzw.com': Rules('0', {'id': 'list'}, {'id': 'content'}),
     'www.yousheng8.com': Rules('0', {'class': 'listmain'}, {'id': 'content'}),
     'www.mht.tw': Rules('0', {'class': 'box_con'}, {'id': 'content'}),
+    'www.cc148.com': Rules('0', {'id': 'list'}, {'id': 'content'}),
+    'www.hongyeshuzhai.com': Rules('0', {'id': 'list'}, {'id': 'content'}),
     'www.quyuege.com': Rules('0', {'class': 'mod-article-list'}, {'class': 'page-content'}),
     # 已解析
     'www.biqugex.com': Rules('http://www.biqugex.com/', {'class': 'listmain'}, {'id': 'content'}),

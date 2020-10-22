@@ -44,12 +44,14 @@ def get_novels_content(url, netloc):
             next_chapter = extract_pre_next_chapter(chapter_url=url, html=str(soup))
             content_list = []
             for lines in content:
+
                 if lines and lines.get_text().strip():
-                    for i in lines.get_text().strip().split('\n'):
+                    dr = re.compile(r'<[^>]+>', re.S)
+                    for i in dr.split(str(lines)):
                         if i.strip():
                             content_list.append(i.strip())
             data = {
-                'content': str('\n'.join(content_list)),
+                'content': '\n'.join(content_list),
                 'next_chapter': next_chapter,
                 'title': title
             }
@@ -61,6 +63,7 @@ def get_novels_chapter(url, netloc):
         'User-Agent': get_random_user_agent(),
         'Referer': url
     }
+
     html = get_html_by_requests(url=url, headers=headers)
     data = dict()
     if html:

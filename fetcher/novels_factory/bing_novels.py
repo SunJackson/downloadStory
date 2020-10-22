@@ -54,7 +54,6 @@ class BingNovels(BaseNovels):
         }
         params = {'q': novels_name, 'go': '搜索', 's': 'ds', 'form': 'QBRE'}
         html = self.fetch_url(url=url, params=params, headers=headers)
-        print(html)
         if html:
             soup = BeautifulSoup(html, 'html5lib')
             result = soup.find_all(class_='b_algo')

@@ -4,16 +4,15 @@ import re
 from operator import itemgetter
 from config import RULES, REPLACE_RULES, ENGINE_PRIORITY
 from fetcher.cache import get_novels_chapter, get_novels_content
-from fetcher.function import get_netloc
+from fetcher.function import get_netloc, get_baidu_real_url
 from fetcher.novels_tools import get_novels_info
-from fetcher.novels_factory import bing_novels,baidu_novels,so_novels
+from fetcher.novels_factory import bing_novels, baidu_novels, so_novels
 
 
-def chapter(url):
+def chapter(url, netloc):
     """
     返回小说章节目录页
     """
-    netloc = get_netloc(url)
     if netloc not in RULES.keys():
         return None
     if netloc in REPLACE_RULES.keys():
@@ -42,7 +41,7 @@ def get_content(url=None):
 def get_search(name, search_type='all'):
     import time
     start = time.time()
-    novels_keyword = name.split(' ')[0]
+    novels_keyword = name.strip().split(' ')[0]
     if not name:
         return None
     # 通过搜索引擎获取检索结果
@@ -51,7 +50,7 @@ def get_search(name, search_type='all'):
     if search_type == 'baidu':
         novels_name = "{name} 小说 最新章节".format(name=name)
 
-        search_res =  baidu_novels.start(novels_name)
+        search_res = baidu_novels.start(novels_name)
         print('{}搜索引擎检索到 {} 个源。'.format('baidu', len(search_res)))
         parse_result.extend(search_res)
 
@@ -97,33 +96,44 @@ def get_search(name, search_type='all'):
 
 if __name__ == '__main__':
     limit = 2
-    name = '捡破烂成世界首富'
+    name = input("输入想要下载小说名：")
     ouput_path = 'result/'
-    res = get_search(name, 'so')
+    res = get_search(name, 'all')
     print('*' * 20 + '检索到全部源' + '*' * 20)
     print(res.get('time'))
     for i in res.get('result', {}):
         print(i)
     is_parse_url = list(set(
-        [(i.get('netloc'), i.get('url'), i.get('latest_chapter_name')) for i in res.get('result', {}) if
+        [(i.get('netloc'), i.get('url'), i.get('latest_chapter_name'), i.get('title')) for i in res.get('result', {}) if
          i.get('is_parse')]))
     if is_parse_url:
         is_parse_index = 0
         print('*' * 20 + '已解析源列表' + '*' * 20)
         for i in is_parse_url:
-            print("{}. {} . 最新章节 {}".format(is_parse_index, i, i[2]))
+            print("编号：{}. 搜索结果名：{} 数据源：{} 最新章节 {}".format(is_parse_index, i[3], i[1], i[2]))
             is_parse_index += 1
         input_no = input("输入想要下载编号：")
         input_list = re.split('[ ,、]', input_no)
         for i in input_list:
-            netloc, url, latest_chapter_name = is_parse_url[int(i)]
-            with open(os.path.join(ouput_path, '{}({}).txt'.format(name, netloc)), 'w+', encoding='utf8') as wf:
-                chapter_res = chapter(url)
+            netloc, url, latest_chapter_name, title = is_parse_url[int(i)]
+            saved_path = os.path.join(ouput_path, '{}({}).txt'.format(name, netloc))
+            with open(saved_path, 'w+', encoding='utf8') as wf:
+                if 'baidu' in url:
+                    url = get_baidu_real_url(url)
+                chapter_res = chapter(url, netloc)
                 if chapter_res:
                     chapter_data = chapter_res.get('result', {})
+                    print("总章节为 {}".format(len(chapter_data)))
+                    input_chapter = input("输入想要下载章节的起始编号：")
                     for k in chapter_data:
+                        if k < int(input_chapter):
+                            continue
                         chapter_title, detail_url = chapter_data.get(k)
                         print('获取: {}\n'.format(chapter_title.strip()), end='', flush=True)
                         detail_content = get_content(detail_url)
                         wf.write('{}\n'.format(chapter_title))
                         wf.write('{}\n'.format(detail_content.strip()))
+            print("成功下载小说【{}】，存储路径为：{}".format(name, saved_path))
+
+    else:
+        print("无解析网站")
