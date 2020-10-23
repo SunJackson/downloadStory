@@ -5,17 +5,19 @@
 
 import os
 import random
-
+import re
 import aiofiles
 import time
 import cchardet
 import requests
 from fake_useragent import UserAgent
-from urllib.parse import urlparse
+from urllib.parse import urljoin, urlparse, urlunparse
+from posixpath import normpath
 
-from config import LOGGER, CONFIG
+from config import LOGGER
 
 import urllib3
+
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
@@ -55,6 +57,37 @@ def get_netloc(url):
     netloc = urlparse(url).netloc
     return netloc or None
 
+
+def urlJoin(base, url):
+    '''
+    url 拼接
+    url = 'http://karpathy.github.io/2014/07/03/feature-learning-escapades/'
+    url_join(url, '../assets/nips2012.jpeg')
+    'http://karpathy.github.io/2014/07/03/assets/nips2012.jpeg'
+    url_join(url, './assets/nips2012.jpeg')
+    'http://karpathy.github.io/2014/07/03/feature-learning-escapades/assets/nips2012.jpeg'
+    url_join(url, '/assets/nips2012.jpeg')
+    'http://karpathy.github.io/assets/nips2012.jpeg'
+    url_join(url,'http://karpathy.github.io/assets/nips2012.jpeg')
+    'http://karpathy.github.io/assets/nips2012.jpeg'
+    '''
+    if get_netloc(url):
+        return url
+    url1 = urljoin(base, url)
+    arr = urlparse(url1)
+    path = normpath(arr[2])
+    return urlunparse((arr.scheme, arr.netloc, path, arr.params, arr.query, arr.fragment))
+
+
+def remove_html_tags(content):
+    content_list = []
+    dr = re.compile(r'<[^>]+>', re.S)
+    for i in dr.split(str(content)):
+        if i.strip():
+            content_list.append(i.strip())
+    return '\n'.join(content_list)
+
+
 def get_baidu_real_url(url):
     """
     获取百度搜索结果真实url
@@ -64,27 +97,38 @@ def get_baidu_real_url(url):
     try:
         import time
         headers = {'user-agent': get_random_user_agent()}
-        response = requests.get(url,headers=headers,  allow_redirects=True, verify=False, timeout=5)
+        response = requests.get(url, headers=headers, allow_redirects=True, verify=False, timeout=5)
         url = response.url if response.url else None
         return url
     except Exception as e:
         return None
 
 
-def get_html_by_requests(url, headers, timeout=15):
+def get_html_by_requests(url, headers, timeout=15, random_sleep=-1):
     """
     :param url:
     :return:
     """
+    text = None
+    netloc = None
     try:
         response = requests.get(url=url, headers=headers, verify=False, timeout=timeout)
         response.raise_for_status()
         content = response.content
         charset = cchardet.detect(content)
         text = content.decode(charset['encoding'])
-        time.sleep(random.randint(0, 5) / 10)
-        return text
+        netloc = get_netloc(response.url)
     except Exception as e:
         LOGGER.exception(e)
-        time.sleep(random.randint(0, 20) / 10)
-        return None
+    finally:
+        if random_sleep < 0:
+            time.sleep(random.randint(0, 5) / 10)
+        if random_sleep > 0:
+            time.sleep(random_sleep)
+    return text, netloc
+
+
+def check_path_exists(path):
+    if not os.path.exists(path):
+        os.makedirs(path)
+        print('创建文件夹：{}'.format(path))

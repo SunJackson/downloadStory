@@ -102,12 +102,12 @@ more_num_str_symbol = ['零', '一', '二', '两', '三', '四', '五', '六', '
 
 def ChineseNumToArab(oriStr):
     lenStr = len(oriStr)
-    aProStr = ''
     if lenStr == 0:
-        return aProStr
+        return None
     hasNumStart = False
     numberStr = ''
     for idx in range(lenStr):
+
         if oriStr[idx] in num_str_start_symbol:
             if not hasNumStart:
                 hasNumStart = True
@@ -119,15 +119,12 @@ def ChineseNumToArab(oriStr):
                     continue
                 else:
                     numResult = str(chinese2digits(numberStr))
-                    numberStr = ''
-                    hasNumStart = False
-                    aProStr += numResult
-            aProStr += oriStr[idx]
+                    return numResult
             pass
     if len(numberStr) > 0:
         resultNum = chinese2digits(numberStr)
-        aProStr += str(resultNum)
-    return aProStr
+        return resultNum
+    return None
 
 if __name__ == '__main__':
-    print(ChineseNumToArab('第一千三百五十章'))
+    print(ChineseNumToArab('一百三十五'))

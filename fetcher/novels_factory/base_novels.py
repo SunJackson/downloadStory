@@ -3,11 +3,8 @@
  Created by howie.hu at 2018/5/28.
 """
 import cchardet
-from config import CONFIG, LOGGER, BLACK_DOMAIN, RULES, LATEST_RULES
+from config import CONFIG, LOGGER, BLACK_DOMAIN
 import httpx
-from urllib.parse import urlencode
-
-
 
 
 class BaseNovels:
@@ -18,9 +15,7 @@ class BaseNovels:
     def __init__(self, logger=None):
         self.black_domain = BLACK_DOMAIN
         self.config = CONFIG
-        self.latest_rules = LATEST_RULES
         self.logger = logger if logger else LOGGER
-        self.rules = RULES
 
     def fetch_url(self, url, params=None, headers=None, data=None, method='GET'):
         """
@@ -31,7 +26,8 @@ class BaseNovels:
         :return:
         """
         try:
-            response = httpx.request(method=method, url=url, params=params, data=data, headers=headers, timeout=60, allow_redirects=True)
+            response = httpx.request(method=method, url=url, params=params, data=data, headers=headers, timeout=60,
+                                     allow_redirects=True)
             assert response.status_code == 200
             LOGGER.info('Task url: {}'.format(response.url))
             content = response.content

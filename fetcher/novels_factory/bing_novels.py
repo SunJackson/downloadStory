@@ -6,7 +6,6 @@ from bs4 import BeautifulSoup
 from urllib.parse import urlparse
 
 
-from fetcher.cache import get_the_latest_chapter
 from fetcher.function import get_random_user_agent
 from fetcher.novels_factory.base_novels import BaseNovels
 
@@ -28,14 +27,9 @@ class BingNovels(BaseNovels):
             url = url.replace('index_demo.html', '').replace('Index.html', '')
             if not url or 'baidu' in url or 'baike.so.com' in url or netloc in self.black_domain or '.html' in url:
                 return None
-            is_parse = 1 if netloc in self.rules.keys() else 0
-            is_recommend = 1 if netloc in self.latest_rules.keys() else 0
+
             return {'title': title,
                     'url': url,
-                    'is_parse': is_parse,
-                    'is_recommend': is_recommend,
-                    'latest_chapter_name': '未知',
-                    'netloc': netloc,
                     'source': '必应'
                     }
 
