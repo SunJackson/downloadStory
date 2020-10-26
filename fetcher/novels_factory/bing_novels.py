@@ -34,7 +34,6 @@ class BingNovels(BaseNovels):
                     }
 
         except Exception as e:
-            self.logger.exception(e)
             return None
 
     def novels_search(self, novels_name):

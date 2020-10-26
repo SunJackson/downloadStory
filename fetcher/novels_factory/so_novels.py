@@ -26,7 +26,6 @@ class SoNovels(BaseNovels):
                 title = html.select('h3 a')[0].get_text()
                 url = html.select('h3 a')[0].get('href', None)
             except Exception as e:
-                self.logger.exception(e)
                 return None
 
             # 针对不同的请进行url的提取
@@ -43,7 +42,6 @@ class SoNovels(BaseNovels):
                     'url': url.replace('index_demo.html', '').replace('Index.html', ''),
                     'source': 'so'}
         except Exception as e:
-            self.logger.exception(e)
             return None
 
     def novels_search(self, novels_name):
@@ -51,7 +49,7 @@ class SoNovels(BaseNovels):
         小说搜索入口函数
         :return:
         """
-        url = self.config.SO_URL
+        url = 'https://www.so.com/s'
 
         headers = {
             'User-Agent': get_random_user_agent(),

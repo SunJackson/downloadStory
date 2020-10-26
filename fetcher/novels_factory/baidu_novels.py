@@ -35,8 +35,8 @@ class BaiduNovels(BaseNovels):
         小说搜索入口函数
         :return:
         """
-        url = self.config.URL_PC
-        params = {'wd': novels_name, 'ie': 'utf-8', 'rn': self.config.BAIDU_RN, 'vf_bl': 1}
+        url = 'http://www.baidu.com/s'
+        params = {'wd': novels_name, 'ie': 'utf-8', 'rn': 15, 'vf_bl': 1}
         headers = {'user-agent': get_random_user_agent()}
         html = self.fetch_url(url=url, params=params, headers=headers)
         if html:

@@ -3,7 +3,7 @@
  Created by howie.hu at 2018/5/28.
 """
 import cchardet
-from config import CONFIG, LOGGER, BLACK_DOMAIN
+from config import BLACK_DOMAIN
 import httpx
 
 
@@ -12,10 +12,9 @@ class BaseNovels:
     小说抓取父类
     """
 
-    def __init__(self, logger=None):
+    def __init__(self):
         self.black_domain = BLACK_DOMAIN
-        self.config = CONFIG
-        self.logger = logger if logger else LOGGER
+
 
     def fetch_url(self, url, params=None, headers=None, data=None, method='GET'):
         """
@@ -29,13 +28,11 @@ class BaseNovels:
             response = httpx.request(method=method, url=url, params=params, data=data, headers=headers, timeout=60,
                                      allow_redirects=True)
             assert response.status_code == 200
-            LOGGER.info('Task url: {}'.format(response.url))
             content = response.content
             charset = cchardet.detect(content)
             html_doc = content.decode(charset['encoding'])
             return html_doc
         except Exception as e:
-            LOGGER.exception(e)
             return None
 
     @classmethod

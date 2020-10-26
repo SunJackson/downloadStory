@@ -63,3 +63,5 @@ REPLACE_RULES = {
 
 # 搜索引擎检索优先级
 ENGINE_PRIORITY = ['so', 'baidu']
+
+REPLACE_HTML_STRING = ['&nbsp;']

@@ -2,7 +2,6 @@
 """
  Created by howie.hu at 2018/5/28.
 """
-
 import os
 import random
 import re
@@ -13,10 +12,11 @@ import requests
 from fake_useragent import UserAgent
 from urllib.parse import urljoin, urlparse, urlunparse
 from posixpath import normpath
-
-from config import LOGGER
-
 import urllib3
+from importlib import import_module
+
+from config.rules import REPLACE_HTML_STRING
+
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -37,6 +37,15 @@ def _get_data(filename, default='') -> list:
     except:
         data = [default]
     return data
+
+
+def get_novels_info(class_name, novels_name):
+    novels_module = import_module(
+        "fetcher.{}.{}_novels".format('novels_factory', class_name))
+    # 获取对应渠道实例化对象
+
+    novels_info = novels_module.start(novels_name)
+    return novels_info
 
 
 def get_random_user_agent() -> str:
@@ -83,8 +92,11 @@ def remove_html_tags(content):
     content_list = []
     dr = re.compile(r'<[^>]+>', re.S)
     for i in dr.split(str(content)):
+        i = i.strip()
         if i.strip():
-            content_list.append(i.strip())
+            for remove_str in REPLACE_HTML_STRING:
+                i = i.replace(remove_str, '')
+            content_list.append(i)
     return '\n'.join(content_list)
 
 
@@ -104,28 +116,28 @@ def get_baidu_real_url(url):
         return None
 
 
-def get_html_by_requests(url, headers, timeout=15, random_sleep=-1):
+def get_html_by_requests(url, headers, timeout=15, random_sleep=-1, proxies=None):
     """
     :param url:
     :return:
     """
     text = None
-    netloc = None
+    real_url = None
     try:
-        response = requests.get(url=url, headers=headers, verify=False, timeout=timeout)
-        response.raise_for_status()
+        response = requests.get(url=url, headers=headers, allow_redirects=True, verify=False,timeout=timeout,proxies=proxies)
         content = response.content
         charset = cchardet.detect(content)
         text = content.decode(charset['encoding'])
-        netloc = get_netloc(response.url)
+        real_url = response.url if response.url else None
     except Exception as e:
-        LOGGER.exception(e)
-    finally:
-        if random_sleep < 0:
-            time.sleep(random.randint(0, 5) / 10)
-        if random_sleep > 0:
-            time.sleep(random_sleep)
-    return text, netloc
+        import traceback
+        traceback.print_exc()
+        print('获取出错：{}'.format(url))
+    if random_sleep < 0:
+        time.sleep(random.randint(0, 5) / 10)
+    if random_sleep > 0:
+        time.sleep(random_sleep)
+    return text, real_url
 
 
 def check_path_exists(path):

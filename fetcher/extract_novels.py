@@ -4,31 +4,25 @@
 """
 
 import re
-from urllib import parse
 from bs4 import BeautifulSoup
 
-
-from fetcher.function import get_html_by_requests, get_random_user_agent, remove_html_tags,urlJoin
-from config import LOGGER
+from fetcher.function import get_html_by_requests, get_random_user_agent, remove_html_tags, urlJoin, get_netloc
 
 
-def get_novels_content(url):
+def get_novels_content(url, **kwargs):
     headers = {
         'User-Agent': get_random_user_agent(),
         'Referer': url
     }
-    data = dict()
-    html,netloc = get_html_by_requests(headers=headers, url=url)
+    max_content = ''
+    html, netloc = get_html_by_requests(headers=headers, url=url, **kwargs)
     if html:
         div_list = re.findall('<div .*?>(.*?)</div>', html.replace('\n', ''))
         div_content_list = []
         for i in div_list:
             div_content_list.append(remove_html_tags(i))
         max_content = max(div_content_list, key=len, default='')
-        data = {
-            'content': max_content,
-        }
-    return data
+    return max_content
 
 
 def get_novels_chapter(url):
@@ -37,13 +31,12 @@ def get_novels_chapter(url):
         'Referer': url
     }
 
-    html, netloc = get_html_by_requests(url=url, headers=headers, random_sleep=0)
+    html, real_url = get_html_by_requests(url=url, headers=headers, random_sleep=0)
     data = dict()
     if html:
         try:
             soup = BeautifulSoup(html, 'html5lib')
         except Exception as e:
-            LOGGER.exception(e)
             return data
         content = soup.find_all('a')
         # 防止章节被display:none
@@ -54,7 +47,7 @@ def get_novels_chapter(url):
                 href = detail_info.get('href', '').strip()
 
                 if name and href:
-                    content_url = urlJoin(url, href.replace('\n', ''))
+                    content_url = urlJoin(real_url, href.replace('\n', ''))
                     if (name, content_url) in story_list:
                         story_list.remove((name, content_url))
                     story_list.append((name, content_url))
@@ -76,7 +69,7 @@ def get_novels_chapter(url):
             if story_list:
                 data['latest_chapter_name'] = story_list[-1][0]
                 data['result'] = story_list
-                data['netloc'] = netloc
+                data['netloc'] = get_netloc(real_url)
     return data
 
 
