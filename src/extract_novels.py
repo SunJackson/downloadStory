@@ -3,10 +3,9 @@
  Created by howie.hu.
 """
 
-import re
 from bs4 import BeautifulSoup
 
-from fetcher.function import get_html_by_requests, get_random_user_agent, remove_html_tags, urlJoin, get_netloc
+from src.function import get_html_by_requests, get_random_user_agent, remove_html_tags, urlJoin, get_netloc,get_all_div
 
 
 def get_novels_content(url, **kwargs):
@@ -15,14 +14,14 @@ def get_novels_content(url, **kwargs):
         'Referer': url
     }
     max_content = ''
-    html, netloc = get_html_by_requests(headers=headers, url=url, **kwargs)
+    html, real_url, status = get_html_by_requests(headers=headers, url=url, **kwargs)
     if html:
-        div_list = re.findall('<div .*?>(.*?)</div>', html.replace('\n', ''))
         div_content_list = []
-        for i in div_list:
+        for i in get_all_div(html.replace('\n', '')):
             div_content_list.append(remove_html_tags(i))
-        max_content = max(div_content_list, key=len, default='')
-    return max_content
+        max_content =  max(div_content_list, key=len, default='')
+    return max_content, status
+
 
 
 def get_novels_chapter(url):
@@ -31,7 +30,7 @@ def get_novels_chapter(url):
         'Referer': url
     }
 
-    html, real_url = get_html_by_requests(url=url, headers=headers, random_sleep=0)
+    html, real_url, _ = get_html_by_requests(url=url, headers=headers, random_sleep=0)
     data = dict()
     if html:
         try:

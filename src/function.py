@@ -17,7 +17,6 @@ from importlib import import_module
 
 from config.rules import REPLACE_HTML_STRING
 
-
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
@@ -41,7 +40,7 @@ def _get_data(filename, default='') -> list:
 
 def get_novels_info(class_name, novels_name):
     novels_module = import_module(
-        "fetcher.{}.{}_novels".format('novels_factory', class_name))
+        "src.{}.{}_novels".format('novels_factory', class_name))
     # 获取对应渠道实例化对象
 
     novels_info = novels_module.start(novels_name)
@@ -100,6 +99,17 @@ def remove_html_tags(content):
     return '\n'.join(content_list)
 
 
+def get_all_div(html):
+    new_list = []
+    div_list = re.findall('<div .*?>(.*?)</div>', html.replace('\n', ''))
+    if div_list:
+        for i in div_list:
+            new_list.extend(get_all_div(i))
+    else:
+        new_list.append(html)
+    return new_list
+
+
 def get_baidu_real_url(url):
     """
     获取百度搜索结果真实url
@@ -123,21 +133,23 @@ def get_html_by_requests(url, headers, timeout=15, random_sleep=-1, proxies=None
     """
     text = None
     real_url = None
+    status = 0
     try:
-        response = requests.get(url=url, headers=headers, allow_redirects=True, verify=False,timeout=timeout,proxies=proxies)
+        response = requests.get(url=url, headers=headers, allow_redirects=True, verify=False, timeout=timeout,
+                                proxies=proxies)
         content = response.content
+        status = response.status_code
         charset = cchardet.detect(content)
         text = content.decode(charset['encoding'])
         real_url = response.url if response.url else None
     except Exception as e:
-        import traceback
-        traceback.print_exc()
-        print('获取出错：{}'.format(url))
+        pass
+
     if random_sleep < 0:
         time.sleep(random.randint(0, 5) / 10)
     if random_sleep > 0:
         time.sleep(random_sleep)
-    return text, real_url
+    return text, real_url, status
 
 
 def check_path_exists(path):

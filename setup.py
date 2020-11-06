@@ -11,7 +11,7 @@ bdist_msi_options = {
     "upgrade_code": "{298CC832-6926-5677-F773-E71BA2B1846A}"
 }
 
-executables = [cx_Freeze.Executable("main.py",
+executables = [cx_Freeze.Executable("downloadStoryMain.py",
                                     base=base,
                                     shortcutName="全网小说下载",
                       )]
