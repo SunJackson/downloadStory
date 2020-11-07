@@ -330,4 +330,4 @@ class DownLoadStory:
 
 if __name__ == '__main__':
     DLS = DownLoadStory()
-    DLS.run_mult_thread()
+    DLS.run()
