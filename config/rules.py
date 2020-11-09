@@ -65,3 +65,5 @@ REPLACE_RULES = {
 ENGINE_PRIORITY = ['so', 'baidu']
 
 REPLACE_HTML_STRING = ['&nbsp;']
+
+CHAPTER_TAG = ['a']

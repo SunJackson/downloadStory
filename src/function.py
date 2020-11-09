@@ -66,6 +66,30 @@ def get_netloc(url):
     return netloc or None
 
 
+def min_distance(word1: str, word2: str) -> int:
+    """
+    计算最短编辑距离
+    :param word1:
+    :param word2:
+    :return:
+    """
+    m, n = len(word1), len(word2)
+    dp = [[-1] * (n + 1) for _ in range(m + 1)]
+
+    def dp_dist(i, j):
+        if dp[i][j] >= 0:
+            return dp[i][j]
+        if i * j == 0:
+            dp[i][j] = i + j
+        elif word1[i - 1] == word2[j - 1]:
+            dp[i][j] = dp_dist(i - 1, j - 1)
+        else:
+            dp[i][j] = 1 + min(dp_dist(i - 1, j), dp_dist(i, j - 1), dp_dist(i - 1, j - 1))
+        return dp[i][j]
+    return dp_dist(m, n)
+
+
+
 def urlJoin(base, url):
     '''
     url 拼接
@@ -156,3 +180,8 @@ def check_path_exists(path):
     if not os.path.exists(path):
         os.makedirs(path)
         print('创建文件夹：{}'.format(path))
+
+
+if __name__ == '__main__':
+    res = min_distance('bbbaaaabaabaaaaa', 'bbbaaaabaaaaaabaaaa')
+    print(res)
