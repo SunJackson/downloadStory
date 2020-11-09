@@ -62,9 +62,9 @@ def get_novels_chapter(url):
             max_url = max(processed_url_list, key=processed_url_list.count)
             len_max_url = len(max_url.split('/'))
             for index, item in enumerate(processed_url_list):
-                if  min_distance(item, max_url) < 2 and len(item.split('/')) == len_max_url:
+                if min_distance(item, max_url) < 2 and len(item.split('/')) == len_max_url:
                     res_list.append(story_list[index])
-            if res_list:
+            if len(res_list) > 30:
                 data['latest_chapter_name'] = res_list[-1][0]
                 data['result'] = res_list
                 data['netloc'] = get_netloc(real_url)
@@ -72,6 +72,6 @@ def get_novels_chapter(url):
 
 
 if __name__ == '__main__':
-    url = 'https://www.taiuu.com/0/67/'
+    url = 'http://www.vipxs.la/7_7288/'
     res = get_novels_chapter(url)
     print(res)
