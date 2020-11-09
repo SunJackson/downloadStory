@@ -58,12 +58,12 @@ def get_novels_chapter(url):
                     continue
             # 去除杂乱数据
             res_list = []
-            if len(story_list) > 30:
-                processed_url_list = [re.sub('\d+', '*', i[1]) for i in story_list]
-                max_url = max(processed_url_list, key=processed_url_list.count)
-                for index, item in enumerate(processed_url_list):
-                    if  min_distance(item, max_url) < 2:
-                        res_list.append(story_list[index])
+            processed_url_list = [re.sub('\d+', '*', i[1]) for i in story_list]
+            max_url = max(processed_url_list, key=processed_url_list.count)
+            len_max_url = len(max_url.split('/'))
+            for index, item in enumerate(processed_url_list):
+                if  min_distance(item, max_url) < 2 and len(item.split('/')) == len_max_url:
+                    res_list.append(story_list[index])
             if res_list:
                 data['latest_chapter_name'] = res_list[-1][0]
                 data['result'] = res_list
