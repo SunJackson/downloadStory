@@ -74,9 +74,8 @@ class downloadStoryHandler(QThread):
         while self.download_status:
             print('代理池开始更新')
             time_fre = time.time() - self.proxy_update_time_record
-            if not self.proxy_ip.empty() and time_fre < self.proxy_update_time_frequency:
+            if time_fre < self.proxy_update_time_frequency:
                 time.sleep(int(self.proxy_update_time_frequency - time_fre))
-                print(int(self.proxy_update_time_frequency - time_fre))
             self.proxy_update_time_record = time.time()
             level = 999
             response = requests.get('https://ip.jiangxianli.com/api/proxy_ips', timeout=5)
@@ -167,7 +166,6 @@ class downloadStoryHandler(QThread):
                 else:
                     print("下载失败：{}【{}】".format(url, status))
                     return ''
-
         return ''
 
     def multi_thread_download(self, chapter_res):
