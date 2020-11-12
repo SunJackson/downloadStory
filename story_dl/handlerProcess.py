@@ -7,6 +7,7 @@ from queue import PriorityQueue
 from concurrent.futures import ThreadPoolExecutor
 from story_dl.extract_novels import get_novels_content
 import requests
+import re
 
 from utils.spider_utils import GetFreeProxy
 
@@ -71,8 +72,8 @@ class downloadStoryHandler(QThread):
             self.close_proxy_ip.append(ip)
 
     def update_proxy_ip(self):
+        print('代理池启动！')
         while self.download_status:
-            print('代理池开始更新')
             time_fre = time.time() - self.proxy_update_time_record
             if time_fre < self.proxy_update_time_frequency:
                 time.sleep(int(self.proxy_update_time_frequency - time_fre))
@@ -147,7 +148,7 @@ class downloadStoryHandler(QThread):
                     self.kanban['download_done'] += 1
                     self.result_dict_signal.emit(
                         {'status': self.kanban['download_done'] / self.kanban['all_chapter_num']})
-
+                    print("下载成功：{}【{}】".format(url, status))
                     return detail_content
                 else:
                     print("下载失败：{}【{}】".format(url, status))
@@ -162,6 +163,7 @@ class downloadStoryHandler(QThread):
                     self.kanban['download_done'] += 1
                     self.result_dict_signal.emit(
                         {'status': self.kanban['download_done'] / self.kanban['all_chapter_num']})
+                    print("下载失败：{}【{}】".format(url, status))
                     return detail_content
                 else:
                     print("下载失败：{}【{}】".format(url, status))
@@ -173,15 +175,14 @@ class downloadStoryHandler(QThread):
             self.executor.submit(self.update_proxy_ip)
         task_rec = []
         self.kanban['all_chapter_num'] = len(chapter_res)
-        for _, url in chapter_res:
-            task_rec.append(self.executor.submit(self.download_story, (url)))
+        for name, url in chapter_res:
+            task_rec.append((name, self.executor.submit(self.download_story, (url))))
         print('提交下载任务完成')
         while self.download_status:
             time.sleep(10)
-            if all([task.done() for task in task_rec]):
+            if all([task.done() for _, task in task_rec]):
                 self.download_status = False
-
-        res = [task.result() for task in task_rec]
+        res = [re.sub(r'(章节|章|回|卷)', '\g<1> ', name) +'\n'+ task.result() for name, task in task_rec]
         return res
 
     def start_download_story(self):
@@ -193,9 +194,9 @@ class downloadStoryHandler(QThread):
                     print("获取 {} {}".format(chapter_title, status))
                     if not detail_content:
                         continue
-                    wf.write('{}\n'.format(chapter_title))
+                    wf.write('{}\n'.format(re.sub(r'(章节|章|回|卷)', '\g<1> ', chapter_title)))
                     wf.write('{}\n'.format(detail_content.strip()))
-            print("成功下载小说【{}】，存储路径为：{}".format(self.search_name, saved_path))
+            print("成功下载小说:{}".format(saved_path))
 
     def start_download_story_multithread(self):
         print('开始下载')
@@ -203,10 +204,14 @@ class downloadStoryHandler(QThread):
             story_contents = self.multi_thread_download(story_chapter_list)
             with open(saved_path, 'w+', encoding='utf8') as wf:
                 wf.write('{}\n'.format('\n'.join(story_contents)))
-            print("成功下载小说【{}】，存储路径为：{}".format(self.search_name, saved_path))
+            print("成功下载小说:{}".format(saved_path))
 
     def run(self) -> None:
-        if self.thread_num > 1:
-            self.start_download_story_multithread()
-        else:
-            self.start_download_story()
+        try:
+            if self.thread_num > 1:
+                self.start_download_story_multithread()
+            else:
+                self.start_download_story()
+        except Exception as e:
+            import traceback
+            traceback.print_exc()
