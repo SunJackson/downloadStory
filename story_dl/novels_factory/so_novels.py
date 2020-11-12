@@ -6,8 +6,8 @@
 from bs4 import BeautifulSoup
 from urllib.parse import parse_qs, urlparse
 
-from src.function import get_random_user_agent
-from src.novels_factory.base_novels import BaseNovels
+from story_dl.function import get_random_user_agent
+from story_dl.novels_factory.base_novels import BaseNovels
 
 
 class SoNovels(BaseNovels):
@@ -55,7 +55,7 @@ class SoNovels(BaseNovels):
             'User-Agent': get_random_user_agent(),
             'Referer': "http://www.so.com/haosou.html?src=home"
         }
-        params = {'ie': 'utf-8', 'src': 'noscript_home', 'shb': 1, 'q': novels_name, }
+        params = {'ie': 'utf-8', 'story_dl': 'noscript_home', 'shb': 1, 'q': novels_name, }
         html = self.fetch_url(url=url, params=params, headers=headers)
         if html:
             soup = BeautifulSoup(html, 'html5lib')

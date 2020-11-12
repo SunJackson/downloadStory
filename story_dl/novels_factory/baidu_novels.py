@@ -3,8 +3,8 @@
  Created by howie.hu at 2018/5/28.
 """
 from bs4 import BeautifulSoup
-from src.function import get_random_user_agent
-from src.novels_factory.base_novels import BaseNovels
+from story_dl.function import get_random_user_agent
+from story_dl.novels_factory.base_novels import BaseNovels
 
 
 class BaiduNovels(BaseNovels):

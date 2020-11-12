@@ -2,10 +2,10 @@
 # -*- coding:utf-8 -*-
 from PyQt5.QtCore import QThread, pyqtSignal
 import time
-from src.downloadStoryMain import get_search, get_parse_novel_source
+from story_dl.downloadStoryMain import get_search, get_parse_novel_source
 from queue import PriorityQueue
 from concurrent.futures import ThreadPoolExecutor
-from src.extract_novels import get_novels_content
+from story_dl.extract_novels import get_novels_content
 import requests
 
 from utils.spider_utils import GetFreeProxy

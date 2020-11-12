@@ -15,7 +15,7 @@ from posixpath import normpath
 import urllib3
 from importlib import import_module
 
-from config.rules import REPLACE_HTML_STRING
+from story_dl.rules import REPLACE_HTML_STRING
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
@@ -40,7 +40,7 @@ def _get_data(filename, default='') -> list:
 
 def get_novels_info(class_name, novels_name):
     novels_module = import_module(
-        "src.{}.{}_novels".format('novels_factory', class_name))
+        "story_dl.{}.{}_novels".format('novels_factory', class_name))
     # 获取对应渠道实例化对象
 
     novels_info = novels_module.start(novels_name)

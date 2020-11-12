@@ -6,9 +6,9 @@ from PyQt5.QtCore import pyqtSignal, Qt
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QInputDialog, QFileDialog, QMessageBox
 import os
 
-from src.downloadStoryUI import Ui_MainWindow
-from src.function import check_path_exists
-from src.handlerProcess import getSearchResultThread, downloadStoryHandler
+from story_dl.downloadStoryUI import Ui_MainWindow
+from story_dl.function import check_path_exists
+from story_dl.handlerProcess import getSearchResultThread, downloadStoryHandler
 
 
 class EmittingStr(QtCore.QObject):

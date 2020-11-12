@@ -7,10 +7,10 @@ from queue import PriorityQueue
 from concurrent.futures import ThreadPoolExecutor
 
 
-from config import REPLACE_RULES, ENGINE_PRIORITY
-from src.extract_novels import get_novels_chapter, get_novels_content
-from src.novels_factory import bing_novels, baidu_novels, so_novels
-from src.function import check_path_exists, get_novels_info
+from story_dl.rules import REPLACE_RULES, ENGINE_PRIORITY
+from story_dl.extract_novels import get_novels_chapter, get_novels_content
+from story_dl.novels_factory import bing_novels, baidu_novels, so_novels
+from story_dl.function import check_path_exists, get_novels_info
 from utils.spider_utils import GetFreeProxy
 
 
@@ -282,7 +282,7 @@ class DownLoadStory:
         else:
             print("无解析网站")
 
-    def run_mult_thread(self, ):
+    def run_mult_thread(self):
         name = input("输入想要下载小说名：")
         ouput_path = os.path.join(os.getcwd(), 'result/')
         check_path_exists(ouput_path)

@@ -6,8 +6,8 @@
 from bs4 import BeautifulSoup
 import re
 
-from config.rules import CHAPTER_TAG
-from src.function import get_html_by_requests, get_random_user_agent, remove_html_tags, urlJoin, get_netloc, \
+from story_dl.rules import CHAPTER_TAG
+from story_dl.function import get_html_by_requests, get_random_user_agent, remove_html_tags, urlJoin, get_netloc, \
     get_all_div, min_distance
 
 

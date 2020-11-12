@@ -3,7 +3,7 @@
  Created by howie.hu at 2018/5/28.
 """
 import cchardet
-from config import BLACK_DOMAIN
+from story_dl.rules import BLACK_DOMAIN
 import httpx
 
 
