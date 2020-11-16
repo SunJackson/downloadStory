@@ -130,7 +130,7 @@ class downloadStoryHandler(QThread):
             if proxy_ip not in self.close_proxy_ip:
                 return proxy_ip
 
-    def download_story(self, url, retry=5):
+    def download_story(self, url, retry=50):
         while retry > 0 and self.download_status:
             if self.is_proxy:
                 proxy_ip = self.get_open_ip()
@@ -163,7 +163,7 @@ class downloadStoryHandler(QThread):
                     self.kanban['download_done'] += 1
                     self.result_dict_signal.emit(
                         {'status': self.kanban['download_done'] / self.kanban['all_chapter_num']})
-                    print("下载失败：{}【{}】".format(url, status))
+                    print("下载成功：{}【{}】".format(url, status))
                     return detail_content
                 else:
                     print("下载失败：{}【{}】".format(url, status))

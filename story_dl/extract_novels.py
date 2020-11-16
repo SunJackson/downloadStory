@@ -7,9 +7,8 @@ from bs4 import BeautifulSoup
 import re
 
 from story_dl.rules import CHAPTER_TAG
-from story_dl.function import get_html_by_requests, get_random_user_agent, remove_html_tags, urlJoin, get_netloc, \
-    get_all_div, min_distance
-
+from story_dl.function import get_html_by_requests, get_random_user_agent, urlJoin, get_netloc, min_distance
+from gne import GeneralNewsExtractor
 
 def get_novels_content(url, **kwargs):
     headers = {
@@ -19,10 +18,9 @@ def get_novels_content(url, **kwargs):
     max_content = ''
     html, real_url, status = get_html_by_requests(headers=headers, url=url, **kwargs)
     if html:
-        div_content_list = []
-        for i in get_all_div(html.replace('\n', '')):
-            div_content_list.append(remove_html_tags(i))
-        max_content = max(div_content_list, key=len, default='')
+        extractor = GeneralNewsExtractor()
+        result = extractor.extract(html)
+        max_content = result.get('content', '')
     return max_content, status
 
 
@@ -72,6 +70,6 @@ def get_novels_chapter(url):
 
 
 if __name__ == '__main__':
-    url = 'http://www.vipxs.la/7_7288/'
-    res = get_novels_chapter(url)
+    url = 'https://www.geilwx.cc/book/56539/36076655.html'
+    res = get_novels_content(url)
     print(res)
