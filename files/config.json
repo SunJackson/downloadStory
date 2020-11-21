@@ -1,0 +1,2088 @@
+{
+  "BLACK_DOMAIN": [
+    ""
+  ],
+  "REPLACE_RULES": {
+    "www.miaobige.com": {
+      "old": "miaobige.com/book/",
+      "new": "miaobige.com/read/"
+    },
+    "www.5ccc.net": {
+      "old": "5ccc.net/wksz_info/",
+      "new": "5ccc.net/xiaoshuo/"
+    },
+    "www.7kankan.com": {
+      "old": "7kankan.com/files/article/info/",
+      "new": "7kankan.com/files/article/html/"
+    },
+    "www.xqingdou.net": {
+      "old": "xqingdou.net/book_",
+      "new": "xqingdou.net/chapter_"
+    },
+    "www.wuyanxia.net": {
+      "old": "wuyanxia.net/book/",
+      "new": "wuyanxia.net/read/"
+    },
+    "www.263zw.com": {
+      "old": "263zw.com/402770/",
+      "new": "263zw.com/402770/list/"
+    }
+  },
+  "ENGINE_PRIORITY": [
+    "so",
+    "baidu"
+  ],
+  "REPLACE_HTML_STRING": [
+    "&nbsp;"
+  ],
+  "CHAPTER_TAG": [
+    "a"
+  ],
+  "CONTENT_REPLACE": {
+    "\u3000\u3000": "\n",
+    "\u3000": "\n",
+    "加入书签": "",
+    "上一章": "",
+    "←": "",
+    "→": "",
+    "章节列表": "",
+    "下一章": "",
+    "顶点小说": ""
+  },
+  "RULES": {
+    "www.biquwu.cc": [
+      "https://www.biquwu.cc/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.quyuege.com": [
+      "0",
+      {
+        "class": "mod-article-list"
+      },
+      {
+        "class": "page-content"
+      }
+    ],
+    "www.biqugex.com": [
+      "http://www.biqugex.com/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.bbiquge.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.info": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.37zw.net": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquku.la": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.sh": [
+      "1",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.co": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.00ksw.org": [
+      "0",
+      {
+        "class": "ml_list"
+      },
+      {
+        "id": "articlecontent"
+      }
+    ],
+    "www.bqge.org": [
+      "http://www.bqge.org/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.aikantxt.la": [
+      "http://www.aikantxt.la/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquzi.com": [
+      "http://www.biquzi.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.bqg.cc": [
+      "http://www.bqg.cc/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.jp": [
+      "0",
+      {
+        "id": "list"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.vipzw.com": [
+      "http://www.vipzw.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.zanghaihuatxt.com": [
+      "http://www.zanghaihuatxt.com/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.xiuxs.com": [
+      "http://www.xiuxs.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.1biquge.com": [
+      "http://www.1biquge.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.xiaoshuowan.com": [
+      "http://www.xiaoshuowan.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqugela.com": [
+      "http://www.biqugela.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqu6.com": [
+      "http://www.biqu6.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.zhuaji.org": [
+      "0",
+      {
+        "tag": "dd"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.sqsxs.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.tv": [
+      "http://www.biquge.tv/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquta.com": [
+      "https://www.biquta.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.xbiquge.la": [
+      "http://www.xbiquge.la/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.cm": [
+      "http://www.biquge.cm/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.23qb.com": [
+      "https://www.23qb.com/",
+      {
+        "id": "chapterList"
+      },
+      {
+        "id": "TextContent"
+      }
+    ],
+    "www.txtwan.com": [
+      "http://www.txtwan.com/",
+      {
+        "id": "chapterList"
+      },
+      {
+        "id": "txt"
+      }
+    ],
+    "www.biqugexsw.com": [
+      "http://www.biqugexsw.com/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.kuxiaoshuo.com": [
+      "1",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.laidudu.com": [
+      "http://www.laidudu.com/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.kanshu58.com": [
+      "0",
+      {
+        "class": "chapters"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.mpxiaoshuo.com": [
+      "0",
+      {
+        "class": "mulu_list"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.23zw.me": [
+      "0",
+      {
+        "id": "chapter_list"
+      },
+      {
+        "id": "text_area"
+      }
+    ],
+    "www.187ks.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.58xs.tw": [
+      "http://www.58xs.tw/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquguan.com": [
+      "http://www.biquguan.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.xs98.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.kxs7.com": [
+      "http://www.kxs7.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqudao.com": [
+      "https://www.biqudao.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.nuomi9.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "book.sfacg.com": [
+      "http://book.sfacg.com/",
+      {
+        "class": "story-catalog"
+      },
+      {
+        "tag": "p"
+      }
+    ],
+    "www.7kshu.com": [
+      "0",
+      {
+        "id": "chapterlist"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.lread.cc": [
+      "http://www.lread.cc/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "booktext"
+      }
+    ],
+    "www.baquge.tw": [
+      "http://www.baquge.tw/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqudu.com": [
+      "https://www.biqudu.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqugeg.com": [
+      "http://www.biqugeg.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.23txt.com": [
+      "http://www.23txt.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.ttzw.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.zwdu.com": [
+      "http://www.zwdu.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.33xs.com": [
+      "http://www.33xs.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.50zw.la": [
+      "0",
+      {
+        "class": "chapterlist"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.44pq.co": [
+      "0",
+      {
+        "class": "chapterlist"
+      },
+      {
+        "id": "BookText"
+      }
+    ],
+    "www.wddsnxn.org": [
+      "1",
+      {
+        "class": "booklist"
+      },
+      {
+        "id": "BookText"
+      }
+    ],
+    "mianzhuan.wddsnxn.org": [
+      "1",
+      {
+        "class": "booklist"
+      },
+      {
+        "id": "BookText"
+      }
+    ],
+    "www.a306.com": [
+      "http://www.a306.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.xs52.com": [
+      "0",
+      {
+        "id": "chapter_list"
+      },
+      {
+        "id": "text_c"
+      }
+    ],
+    "www.xs.la": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.23xsw.cc": [
+      "http://www.23xsw.cc/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.8jzw.com": [
+      "http://www.8jzw.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquguo.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.woquge.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.zhonghuawuxia.com": [
+      "1",
+      {
+        "class": "list"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.mytxt.cc": [
+      "http://www.mytxt.cc/",
+      {
+        "class": "story_list_m62topxs"
+      },
+      {
+        "class": "detail_con_m62topxs"
+      }
+    ],
+    "www.136txt.com": [
+      "1",
+      {
+        "class": "directory_con"
+      },
+      {
+        "id": "chapterContent"
+      }
+    ],
+    "www.xs74.com": [
+      "1",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.yssm.org": [
+      "0",
+      {
+        "class": "chapterlist"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.luoxia.com": [
+      "1",
+      {
+        "class": "book-list"
+      },
+      {
+        "tag": "p"
+      }
+    ],
+    "www.sbkk88.com": [
+      "http://www.sbkk88.com/",
+      {
+        "class": "leftList"
+      },
+      {
+        "id": "f_article"
+      }
+    ],
+    "www.dxsxs.com": [
+      "http://www.dxsxs.com/",
+      {
+        "id": "yuedu"
+      },
+      {
+        "class": "zw"
+      }
+    ],
+    "www.wenku8.com": [
+      "0",
+      {
+        "class": "css"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.xqingdou.net": [
+      "http://www.xqingdou.net/",
+      {
+        "class": "dirconone"
+      },
+      {
+        "id": "chapter_content"
+      }
+    ],
+    "www.zuowe.com": [
+      "http://www.zuowe.com/",
+      {
+        "class": "book_list"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.biqugek.com": [
+      "1",
+      {
+        "class": "book_list"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.wuyanxia.net": [
+      "http://www.wuyanxia.net/",
+      {
+        "class": "zjlist4"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.50331.net": [
+      "http://www.50331.net/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.wenxuemi.com": [
+      "http://www.wenxuemi.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.xs222.com": [
+      "http://www.xs222.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.lewen8.com": [
+      "http://www.lewen8.com/",
+      {
+        "id": "chapterlist"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.5ccc.net": [
+      "0",
+      {
+        "class": "acss"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.bqg5200.com": [
+      "http://www.bqg5200.com/",
+      {
+        "id": "readerlist"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.vodtw.com": [
+      "0",
+      {
+        "class": "insert_list"
+      },
+      {
+        "class": "contentbox"
+      }
+    ],
+    "www.6mao.com": [
+      "http://www.6mao.com/",
+      {
+        "class": "liebiao_bottom"
+      },
+      {
+        "id": "neirong"
+      }
+    ],
+    "www.touxiang.la": [
+      "http://www.touxiang.la/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.7kankan.com": [
+      "0",
+      {
+        "class": "uclist"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqugetw.com": [
+      "http://www.biqugetw.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "gdbzkz.com": [
+      "1",
+      {
+        "class": "mulu"
+      },
+      {
+        "class": "content-body"
+      }
+    ],
+    "www.gdbzkz.com": [
+      "1",
+      {
+        "class": "mulu"
+      },
+      {
+        "class": "content-body"
+      }
+    ],
+    "www.freexs.cn": [
+      "0",
+      {
+        "class": "readout"
+      },
+      {
+        "class": "shuneirong"
+      }
+    ],
+    "www.bxquge.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.beidouxin.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.3qzone.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.97xs.net": [
+      "1",
+      {
+        "class": "box"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.7dsw.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.263zw.com": [
+      "1",
+      {
+        "class": "chapter"
+      },
+      {
+        "id": "chapterContent"
+      }
+    ],
+    "www.biquge5.com": [
+      "1",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.yooread.com": [
+      "http://www.yooread.com",
+      {
+        "id": "chapterList"
+      },
+      {
+        "tag": "p"
+      }
+    ],
+    "www.xs82.com": [
+      "0",
+      {
+        "class": "chapterlist"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.kanshuhai.com": [
+      "0",
+      {
+        "id": "book"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.bequge.com": [
+      "https://www.bequge.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquku.co": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.xbqge.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.aiquxs.com": [
+      "0",
+      {
+        "id": "list"
+      },
+      {
+        "id": "booktext"
+      }
+    ],
+    "www.ttshu.com": [
+      "http://www.ttshu.com",
+      {
+        "class": "border"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.23us.com": [
+      "0",
+      {
+        "id": "at"
+      },
+      {
+        "id": "contents"
+      }
+    ],
+    "www.x23us.com": [
+      "0",
+      {
+        "id": "at"
+      },
+      {
+        "id": "contents"
+      }
+    ],
+    "www.23wx.cc": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.23wx.cm": [
+      "0",
+      {
+        "class": "book_list"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.ddbiquge.com": [
+      "http://www.ddbiquge.com",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.abocms.cn": [
+      "http://www.abocms.cn/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.liewen.cc": [
+      "https://www.liewen.cc/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.heiyange.com": [
+      "http://www.heiyange.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.8535.org": [
+      "0",
+      {
+        "class": "booklist"
+      },
+      {
+        "class": "txtc"
+      }
+    ],
+    "www.dingdianzw.com": [
+      "http://www.dingdianzw.com/",
+      {
+        "id": "bgdiv"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.cc": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.lewenxiaoshuo.com": [
+      "1",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.111bz.org": [
+      "http://www.111bz.org/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqugebook.com": [
+      "http://www.biqugebook.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.e8zw.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.xqqxs.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "class": "content"
+      }
+    ],
+    "www.139book.com": [
+      "http://www.139book.com/",
+      {
+        "class": "list_box"
+      },
+      {
+        "class": "box_box"
+      }
+    ],
+    "www.jcdf99.com": [
+      "0",
+      {
+        "class": "list_box"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.tianzeba.com": [
+      "http://www.tianzeba.com/",
+      {
+        "class": "chapterlist"
+      },
+      {
+        "id": "BookText"
+      }
+    ],
+    "www.kanshuwangzhan.com": [
+      "0",
+      {
+        "id": "chapterlist"
+      },
+      {
+        "id": "booktext"
+      }
+    ],
+    "tianyibook.la": [
+      "http://tianyibook.la/",
+      {
+        "class": "chapterlist"
+      },
+      {
+        "id": "BookText"
+      }
+    ],
+    "www.quanben.net": [
+      "http://www.quanben.net/",
+      {
+        "class": "chapterlist"
+      },
+      {
+        "id": "BookText"
+      }
+    ],
+    "www.lingdianksw.com": [
+      "0",
+      {
+        "class": "acss"
+      },
+      {
+        "id": "ccontent"
+      }
+    ],
+    "www.qb5.tw": [
+      "http://www.qb5.tw/",
+      {
+        "class": "zjbox"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.ybdu.com": [
+      "0",
+      {
+        "class": "mulu_list"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.quanben.com": [
+      "0",
+      {
+        "class": "mulu_list"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.fhxs.com": [
+      "1",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.biz": [
+      "http://www.biquge.biz/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.58xs.com": [
+      "http://www.58xs.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqukan.com": [
+      "http://www.biqukan.com/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.shuyuelou.com": [
+      "http://www.shuyuelou.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.mangg.com": [
+      "http://www.mangg.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.50zw.com": [
+      "0",
+      {
+        "class": "chapterlist"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.lingdiankanshu.co": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqiku.com": [
+      "http://www.biqiku.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.duilianku.com": [
+      "http://www.duilianku.com/",
+      {
+        "id": "list"
+      },
+      {
+        "class": "chapter"
+      }
+    ],
+    "www.5xiaxiaoshuo.com": [
+      "http://www.5xiaxiaoshuo.com/",
+      {
+        "class": "art_listmain_main"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.81xsw.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.wxguan.com": [
+      "http://www.wxguan.com/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.qb5200.tw": [
+      "http://www.qb5200.tw/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.fox2008.cn": [
+      "http://www.fox2008.cn/",
+      {
+        "class": "book"
+      },
+      {
+        "id": "chapterContent"
+      }
+    ],
+    "www.22zw.com": [
+      "0",
+      {
+        "class": "acss"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.k6uk.com": [
+      "0",
+      {
+        "class": "acss"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.126shu.com": [
+      "http://www.126shu.com/",
+      {
+        "id": "list"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.kooxs.com": [
+      "0",
+      {
+        "class": "list"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.shubaotxt.com": [
+      "0",
+      {
+        "class": "list"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.muyuge.com": [
+      "1",
+      {
+        "id": "xslist"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqu.la": [
+      "0",
+      {
+        "class": "book_list"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "shushu.com.cn": [
+      "http://shushu.com.cn/",
+      {
+        "id": "dirsort01"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.shuhai.com": [
+      "0",
+      {
+        "class": "box_chap"
+      },
+      {
+        "id": "readcon"
+      }
+    ],
+    "www.37yue.com": [
+      "0",
+      {
+        "class": "list-chapter"
+      },
+      {
+        "class": "chapter"
+      }
+    ],
+    "www.35zw.com": [
+      "0",
+      {
+        "class": "book_list"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.xinshu.in": [
+      "http://www.xinshu.in/",
+      {
+        "class": "list_box"
+      },
+      {
+        "class": "box_box"
+      }
+    ],
+    "www.lwxs520.com": [
+      "0",
+      {
+        "class": "dccss"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.lwxs.la": [
+      "http://www.lwxs.la/",
+      {
+        "id": "defaulthtml4"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqule.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.33yq.com": [
+      "1",
+      {
+        "class": "box_con"
+      },
+      {
+        "class": "zhangjieTXT"
+      }
+    ],
+    "www.dishuge.com": [
+      "1",
+      {
+        "class": "update"
+      },
+      {
+        "tag": "p"
+      }
+    ],
+    "www.qu.la": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.shuge.net": [
+      "http://www.shuge.ne/t",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.daomengren.com": [
+      "http://www.daomengren.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.81zw.net": [
+      "http://www.81zw.net/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.09xs.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.fhxiaoshuo.com": [
+      "1",
+      {
+        "class": "box_con"
+      },
+      {
+        "class": "zhangjieTXT"
+      }
+    ],
+    "www.yikanxiaoshuo.com": [
+      "http://www.yikanxiaoshuo.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.1xiaoshuo.com": [
+      "http://www.1xiaoshuo.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.kanshu.la": [
+      "http://www.kanshu.la/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.kbiquge.com": [
+      "http://www.kbiquge.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.00ksw.net": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.booktxt.net": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "wanmeishijiexiaoshuo.org": [
+      "1",
+      {
+        "class": "bg"
+      },
+      {
+        "class": "content"
+      }
+    ],
+    "www.sosoxiaoshuo.cc": [
+      "http://www.sosoxiaoshuo.cc/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.ciluke.com": [
+      "0",
+      {
+        "id": "list"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.81zw.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.cilook.net": [
+      "0",
+      {
+        "id": "cl_content"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.baoliny.com": [
+      "http://www.baoliny.com/",
+      {
+        "class": "readerListShow"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.tw": [
+      "http://www.biquge.tw/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.7788xs.net": [
+      "http://www.7788xs.net/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.06sy.com": [
+      "http://www.06sy.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqumo.com": [
+      "https://www.biqumo.com/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.kanshuzhe.com": [
+      "http://www.kanshuzhe.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biqiuge.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.lwxs.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "TXT"
+      }
+    ],
+    "www.biqugezw.com": [
+      "http://www.biqugezw.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.com.tw": [
+      "http://www.biquge.com.tw/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.shuqizw.com": [
+      "http://www.shuqizw.com/",
+      {
+        "class": "article_texttitleb"
+      },
+      {
+        "id": "book_text"
+      }
+    ],
+    "read.ixdzs.com": [
+      "0",
+      {
+        "class": "catalog"
+      },
+      {
+        "class": "content"
+      }
+    ],
+    "www.shumilou.net": [
+      "0",
+      {
+        "class": "chapterlist"
+      },
+      {
+        "id": "BookText"
+      }
+    ],
+    "www.8shuw.com": [
+      "1",
+      {
+        "class": "chapterlist"
+      },
+      {
+        "id": "readtext"
+      }
+    ],
+    "www.heiyan.la": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.bbsa5.com": [
+      "1",
+      {
+        "class": "panel"
+      },
+      {
+        "class": "content-body"
+      }
+    ],
+    "www.tycqxs.com": [
+      "http://www.tycqxs.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.miaobige.com": [
+      "https://www.miaobige.com/",
+      {
+        "id": "readerlists"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.dashubao.net": [
+      "0",
+      {
+        "class": "ml_main"
+      },
+      {
+        "class": "yd_text2"
+      }
+    ],
+    "www.23zw.com": [
+      "0",
+      {
+        "id": "chapter_list"
+      },
+      {
+        "id": "text_area"
+      }
+    ],
+    "www.23us.la": [
+      "http://www.23us.la/",
+      {
+        "class": "inner"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.2952.cc": [
+      "0",
+      {
+        "class": "inner"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.23us.cc": [
+      "0",
+      {
+        "class": "inner"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.13xs.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "booktext"
+      }
+    ],
+    "www.tsxsw.com": [
+      "0",
+      {
+        "class": "bdsub"
+      },
+      {
+        "id": "contents"
+      }
+    ],
+    "www.ymoxuan.com": [
+      "1",
+      {
+        "class": "mulu"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.ixs.cc": [
+      "https:",
+      {
+        "class": "mulu"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "zetianjiba.net": [
+      "1",
+      {
+        "class": "bg"
+      },
+      {
+        "class": "content"
+      }
+    ],
+    "www.37zw.com": [
+      "0",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.555zw.com": [
+      "0",
+      {
+        "class": "dir"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.jueshitangmen.info": [
+      "1",
+      {
+        "class": "bg"
+      },
+      {
+        "class": "content"
+      }
+    ],
+    "www.bxwx9.org": [
+      "0",
+      {
+        "class": "TabCss"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.xxbiquge.com": [
+      "https://www.xxbiquge.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquwo.com": [
+      "https://www.biquwo.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.fs23.com": [
+      "http://www.fs23.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.longtengx.com": [
+      "http://www.longtengx.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.lingyu.org": [
+      "http://www.lingyu.org/",
+      {
+        "class": "mt10"
+      },
+      {
+        "id": "htmlContent"
+      }
+    ],
+    "www.aszw8.com": [
+      "0",
+      {
+        "id": "at"
+      },
+      {
+        "id": "contents"
+      }
+    ],
+    "www.23us.so": [
+      "1",
+      {
+        "id": "at"
+      },
+      {
+        "id": "contents"
+      }
+    ],
+    "www.biquge.lu": [
+      "http://www.biquge.lu/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.3zm.net": [
+      "http://www.3zm.net/",
+      {
+        "class": "listmain"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.biquge.com": [
+      "http://www.biquge.com/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+    "www.kanshuzhong.com": [
+      "0",
+      {
+        "class": "bookcontent"
+      },
+      {
+        "class": "textcontent"
+      }
+    ],
+    "www.siluke.tw": [
+      "http://www.siluke.tw/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ],
+	"www.vipxs.la": [
+      "http://www.siluke.tw/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ]
+  }
+}

@@ -2,14 +2,16 @@
 # -*- coding:utf-8 -*-
 from PyQt5.QtCore import QThread, pyqtSignal
 import time
-from story_dl.downloadStoryMain import get_search, get_parse_novel_source
+
 from queue import PriorityQueue
 from concurrent.futures import ThreadPoolExecutor
-from story_dl.extract_novels import get_novels_content
+from story_dl.extract_novels import get_novels_content, get_netloc
 import requests
 import re
 
 from utils.spider_utils import GetFreeProxy
+from story_dl.downloadStoryMain import get_search, get_parse_novel_source
+from story_dl.rules import RULES
 
 
 class getSearchResultThread(QThread):
@@ -25,6 +27,7 @@ class getSearchResultThread(QThread):
         result = res.get('result', {})
         single_dict = dict()
         single_dict['error_message'] = None
+        single_dict['search_stats'] = -1
         if not result:
             single_dict['error_message'] = '没有检索到结果！'
             self.result_dict_signal.emit(single_dict)
@@ -33,10 +36,17 @@ class getSearchResultThread(QThread):
             row = res.get('count', 0)
             is_parse_index = 0
             for i in parse_novel_source_res:
+                if i.get('netloc', '未知') in RULES:
+                    i['is_parse'] = 1
+                else:
+                    i['is_parse'] = 0
                 i['is_parse_index'] = is_parse_index
                 i['row'] = row
+                i['search_stats'] = 1
                 is_parse_index += 1
                 self.result_dict_signal.emit(i)
+            single_dict['search_stats'] = 0
+            self.result_dict_signal.emit(single_dict)
 
 
 class downloadStoryHandler(QThread):
@@ -182,7 +192,10 @@ class downloadStoryHandler(QThread):
             time.sleep(10)
             if all([task.done() for _, task in task_rec]):
                 self.download_status = False
-        res = [re.sub(r'(章节|章|回|卷)', '\g<1> ', name) +'\n'+ task.result() for name, task in task_rec]
+        res = []
+        for name, task in task_rec:
+            task_res = task.result()
+            res.append(re.sub(r'(章节|章|回|卷|\.)', '\g<1> ', name) + '\n' + str(task_res))
         return res
 
     def start_download_story(self):
@@ -192,9 +205,10 @@ class downloadStoryHandler(QThread):
                 for chapter_title, detail_url in story_chapter_list:
                     detail_content, status = get_novels_content(url=detail_url)
                     print("获取 {} {}".format(chapter_title, status))
-                    if not detail_content:
+                    print(detail_content.strip())
+                    if not detail_content.strip():
                         continue
-                    wf.write('{}\n'.format(re.sub(r'(章节|章|回|卷)', '\g<1> ', chapter_title)))
+                    wf.write('{}\n'.format(re.sub(r'(章节|章|回|卷|\.)', '\g<1> ', chapter_title)))
                     wf.write('{}\n'.format(detail_content.strip()))
             print("成功下载小说:{}".format(saved_path))
 

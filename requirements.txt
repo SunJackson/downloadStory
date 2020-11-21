@@ -43,3 +43,4 @@ wcwidth==0.2.5
 webencodings==0.5.1
 Werkzeug==1.0.1
 zipp==3.3.1
+gne==0.2.4

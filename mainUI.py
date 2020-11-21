@@ -2,11 +2,13 @@
 # -*- coding:utf-8 -*-
 from PyQt5 import QtCore, QtGui
 import sys
-from PyQt5.QtCore import pyqtSignal, Qt
+from PyQt5.QtCore import pyqtSignal, Qt, QCoreApplication
+from PyQt5.QtGui import QColor, QFont, QIcon,QPixmap
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QInputDialog, QFileDialog, QMessageBox
 import os
 
-from story_dl.downloadStoryUI import Ui_MainWindow
+from story_dl.downloadStory import Ui_MainWindow
+from story_dl.rules import RULES
 from story_dl.function import check_path_exists
 from story_dl.handlerProcess import getSearchResultThread, downloadStoryHandler
 
@@ -22,7 +24,6 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super(ControlBoard, self).__init__()
         self.setupUi(self)
-
         self.set_default()
         self.search_name = ''
         self.download_stop_flag = False
@@ -34,7 +35,9 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
 
     def set_default(self):
         self.setFixedSize(self.width(), self.height())
-        self.label.setPixmap(QtGui.QPixmap("./files/download.png"))
+        self.setWindowOpacity(0.9)  # 设置窗口透明度
+        # self.setWindowFlag(QtCore.Qt.FramelessWindowHint)  # 隐藏边框
+        self.label.setPixmap(QtGui.QPixmap("files/download.png"))
         self.pushButton.clicked.connect(self.open_file)
         self.startDownload.clicked.connect(self.start_download)
         self.stopDownload.clicked.connect(self.stop_download)
@@ -43,6 +46,13 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
         self.savePath.setText(os.path.join(os.getcwd(), 'download'))
         self.inputSearch.setAlignment(QtCore.Qt.AlignCenter)
         self.progressBarDownload.setProperty("value", 0)
+        self.tableWidget.setColumnWidth(0, 200)
+        self.tableWidget.setColumnWidth(4, 400)
+
+        if self.stopDownload.isEnabled():
+            self.stopDownload.setEnabled(False)
+        if self.startDownload.isEnabled():
+            self.startDownload.setEnabled(False)
 
     def open_file(self):
         open_file_dir = QFileDialog.getExistingDirectory()
@@ -66,29 +76,40 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
         :return:
         """
         error_message = res.get('error_message', {})
+        search_stats = res.get('search_stats', -1)
         if error_message:
             self.show_message(error_message)
             return
         self.parse_novel_source_res.append(res)
         row = res.get('row', 0)
-        if self.tableWidget.rowCount() != row:
+        if self.tableWidget.rowCount() != row and search_stats == 1:
             self.tableWidget.setRowCount(row)
-        is_parse_index = res.get('is_parse_index', 0)
-        checkBox = QTableWidgetItem(res.get('title', '未知'))
-        checkBox.setCheckState(Qt.Unchecked)
-        self.tableWidget.setItem(is_parse_index, 0, checkBox)
 
-        newItem = QTableWidgetItem(res.get('netloc', '未知'))
-        self.tableWidget.setItem(is_parse_index, 1, newItem)
+        if search_stats == 1:
+            is_parse_index = res.get('is_parse_index', 0)
 
-        newItem = QTableWidgetItem(str(len(res.get('result', []))))
-        self.tableWidget.setItem(is_parse_index, 2, newItem)
+            if res.get('is_parse', 0):
+                checkBox = QTableWidgetItem('【已解析】{}'.format(res.get('title', '未知')))
+                checkBox.setIcon(QIcon("files/check-line.png"))  # 设置Item的图标
+            else:
+                checkBox = QTableWidgetItem(res.get('title', '未知'))
+            checkBox.setCheckState(Qt.Unchecked)
+            self.tableWidget.setItem(is_parse_index, 0, checkBox)
 
-        newItem = QTableWidgetItem(res.get('latest_chapter_name', '未知'))
-        self.tableWidget.setItem(is_parse_index, 3, newItem)
+            newItem = QTableWidgetItem(res.get('netloc', '未知'))
+            self.tableWidget.setItem(is_parse_index, 1, newItem)
 
-        newItem = QTableWidgetItem('|'.join([x[0] for x in res.get('result', [])[:3] if res.get('result', [])]))
-        self.tableWidget.setItem(is_parse_index, 4, newItem)
+            newItem = QTableWidgetItem(str(len(res.get('result', []))))
+            self.tableWidget.setItem(is_parse_index, 2, newItem)
+
+            newItem = QTableWidgetItem(res.get('latest_chapter_name', '未知'))
+            self.tableWidget.setItem(is_parse_index, 3, newItem)
+
+            newItem = QTableWidgetItem('|'.join([x[0] for x in res.get('result', [])[:3] if res.get('result', [])]))
+            self.tableWidget.setItem(is_parse_index, 4, newItem)
+            print('搜索到 {} 条结果'.format(is_parse_index + 1))
+        elif search_stats == 0:
+            print('搜索完成，请选择下载！')
         QApplication.processEvents()
 
     def stop_download(self):
@@ -104,6 +125,8 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
             self.progressBarDownload.setProperty("value", float(status)*100)
 
     def start_download(self):
+        if not self.stopDownload.isEnabled():
+            self.stopDownload.setEnabled(True)
         self.is_proxy = self.checkBoxProxy.isChecked()
         self.thread_num = int(self.spinBoxThread.text()) or 1
         download_story_list = []
@@ -141,6 +164,8 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
         self.GSRT.result_dict_signal.connect(self.set_item_table_widget)
         # 启动线程
         self.GSRT.start()
+        if not self.startDownload.isEnabled():
+            self.startDownload.setEnabled(True)
 
 
 if __name__ == "__main__":
