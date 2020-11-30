@@ -105,3 +105,4 @@ metastore_db/
 saprk-warehouse/
 .log
 *test.py
+setting.py

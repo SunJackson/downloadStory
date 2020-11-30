@@ -47,9 +47,10 @@ def get_novels_content(url, **kwargs):
             extractor = GeneralNewsExtractor()
             result = extractor.extract(html, with_body_html=True)
             max_content = result.get('content', '')
-            for key in CONTENT_REPLACE:
-                max_content = max_content.replace(key, CONTENT_REPLACE[key])
-    return '\n'.join([i.strip() for i in max_content.split('\n') if i.strip()]), status
+        for key in CONTENT_REPLACE:
+            max_content = max_content.replace(key, CONTENT_REPLACE[key])
+    res_content = '\n'.join([i.strip() for i in max_content.split('\n') if i.strip()])
+    return res_content, status
 
 
 def get_novels_chapter(url):
@@ -130,6 +131,9 @@ def get_novels_chapter(url):
 
 
 if __name__ == '__main__':
-    url = 'https://www.dingdiann.com/ddk159053/8312806.html'
+    url = 'https://www.booktxt.net/3_3490/99309890.html'
     res = get_novels_content(url)
-    print(res)
+
+    with open('text.txt', 'w+', encoding='utf8') as wf:
+        wf.write('{}\n'.format(res[0]))
+

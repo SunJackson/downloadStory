@@ -2,13 +2,12 @@
 # -*- coding:utf-8 -*-
 from PyQt5 import QtCore, QtGui
 import sys
-from PyQt5.QtCore import pyqtSignal, Qt, QCoreApplication
-from PyQt5.QtGui import QColor, QFont, QIcon,QPixmap
+from PyQt5.QtCore import pyqtSignal, Qt
+from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QInputDialog, QFileDialog, QMessageBox
 import os
 
 from story_dl.downloadStory import Ui_MainWindow
-from story_dl.rules import RULES
 from story_dl.function import check_path_exists
 from story_dl.handlerProcess import getSearchResultThread, downloadStoryHandler
 
@@ -29,8 +28,8 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
         self.download_stop_flag = False
         self.is_proxy = self.checkBoxProxy.isChecked()
         self.thread_num = int(self.spinBoxThread.text()) or 1
-        sys.stdout = EmittingStr(textWritten=self.outputWritten)
-        sys.stderr = EmittingStr(textWritten=self.outputWritten)
+        # sys.stdout = EmittingStr(textWritten=self.outputWritten)
+        # sys.stderr = EmittingStr(textWritten=self.outputWritten)
         self.parse_novel_source_res = []
 
     def set_default(self):

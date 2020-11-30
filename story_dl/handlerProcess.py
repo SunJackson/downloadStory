@@ -68,10 +68,10 @@ class downloadStoryHandler(QThread):
             'download_done': 0,
             'all_chapter_num': 1
         }
-        self.thread_num += 1
         self.executor = ThreadPoolExecutor(max_workers=self.thread_num)
         self.result_dict_signal.emit({'status': 0})
         if is_proxy:
+            self.thread_num += 1
             self.start_update_proxy()
 
     def save_close_ip(self, ip):
@@ -168,7 +168,7 @@ class downloadStoryHandler(QThread):
 
                 if not detail_content and not status:
                     retry -= 1
-                    print('正在重试：{}'.format(url))
+                    print('正在重试：{} 【{}】'.format(url, status))
                 elif status == 200 or status == 302:
                     self.kanban['download_done'] += 1
                     self.result_dict_signal.emit(
@@ -195,7 +195,7 @@ class downloadStoryHandler(QThread):
         res = []
         for name, task in task_rec:
             task_res = task.result()
-            res.append(re.sub(r'(章节|章|回|卷|\.)', '\g<1> ', name) + '\n' + str(task_res))
+            res.append(re.sub(r'(章节|章|回|卷|\.)', '\g<1> ', name) + '\n' + task_res)
         return res
 
     def start_download_story(self):
@@ -205,11 +205,10 @@ class downloadStoryHandler(QThread):
                 for chapter_title, detail_url in story_chapter_list:
                     detail_content, status = get_novels_content(url=detail_url)
                     print("获取 {} {}".format(chapter_title, status))
-                    print(detail_content.strip())
-                    if not detail_content.strip():
+                    if not detail_content:
                         continue
                     wf.write('{}\n'.format(re.sub(r'(章节|章|回|卷|\.)', '\g<1> ', chapter_title)))
-                    wf.write('{}\n'.format(detail_content.strip()))
+                    wf.write('{}\n'.format(detail_content))
             print("成功下载小说:{}".format(saved_path))
 
     def start_download_story_multithread(self):
@@ -217,7 +216,7 @@ class downloadStoryHandler(QThread):
         for story_chapter_list, saved_path in self.download_story_list:
             story_contents = self.multi_thread_download(story_chapter_list)
             with open(saved_path, 'w+', encoding='utf8') as wf:
-                wf.write('{}\n'.format('\n'.join(story_contents)))
+                wf.write('{}\n'.format(story_contents))
             print("成功下载小说:{}".format(saved_path))
 
     def run(self) -> None:
