@@ -3,7 +3,8 @@ from collections import namedtuple
 import os
 import json
 
-from handerMysql import HanderMysql
+from story_dl.handerMysql import HanderMysql
+
 Rules = namedtuple('Rules', 'content_url chapter_selector content_selector')
 
 DOWNLOAD_RULES = dict()
