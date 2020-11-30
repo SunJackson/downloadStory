@@ -216,7 +216,7 @@ class downloadStoryHandler(QThread):
         for story_chapter_list, saved_path in self.download_story_list:
             story_contents = self.multi_thread_download(story_chapter_list)
             with open(saved_path, 'w+', encoding='utf8') as wf:
-                wf.write('{}\n'.format(story_contents))
+                wf.write('{}\n'.format('\n'.join(story_contents)))
             print("成功下载小说:{}".format(saved_path))
 
     def run(self) -> None:
