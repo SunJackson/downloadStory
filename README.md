@@ -1,4 +1,4 @@
-# 小说下载助手
+# 全网小说下载助手
 
 ## 功能
 
@@ -9,6 +9,7 @@
 4. 实现多线程下载
 5. 实现百度和SO搜索引擎的检索
 6. 添加基础界面
+7. 实现全局小说解析自定义配置（配置./files/config.json）
 
 ### 未来实现功能
 1. 增加多个搜索引擎检索
@@ -37,3 +38,50 @@
 
     [小说下载工具.exe](https://github.com/SunJackson/downloadStory/releases/tag/0.1.0)
 
+### config.json配置说明
+
+```json
+{
+  "BLACK_DOMAIN": [
+    ""
+  ],
+  "REPLACE_RULES": {
+    "www.263zw.com": {
+      "old": "263zw.com/402770/",
+      "new": "263zw.com/402770/list/"
+    }
+  },
+  "ENGINE_PRIORITY": [
+    "so",
+    "baidu"
+  ],
+  "REPLACE_HTML_STRING": [
+    "&nbsp;"
+  ],
+  "CHAPTER_TAG": [
+    "a"
+  ],
+  "CONTENT_REPLACE": {
+    "\u3000\u3000": "\n",
+    "\u3000": "\n",
+    "加入书签": "",
+    "上一章": "",
+    "←": "",
+    "→": "",
+    "章节列表": "",
+    "下一章": "",
+    "顶点小说": ""
+  },
+  "RULES": {
+	"www.vipxs.la": [
+      "http://www.siluke.tw/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ]
+  }
+}
+```
