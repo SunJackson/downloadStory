@@ -7,13 +7,7 @@ from story_dl.handerMysql import HanderMysql
 
 Rules = namedtuple('Rules', 'content_url chapter_selector content_selector')
 
-DOWNLOAD_RULES = dict()
-try:
-    HM = HanderMysql()
-    for data in HM.download_rules():
-        DOWNLOAD_RULES[data.domain] = Rules('0', eval(data.chapter_selector), eval(data.content_selector))
-except Exception as e:
-    DOWNLOAD_RULES = dict()
+
 
 CONFIG = dict()
 if os.path.exists('./files/config.json'):
@@ -600,14 +594,19 @@ DEFAULT_RULES = {
 
 }
 
-RULES = dict()
-CONFIG_RULES = CONFIG.get('RULES', None)
-if not CONFIG_RULES:
-    if DOWNLOAD_RULES:
-        RULES = DOWNLOAD_RULES
-    else:
-        RULES = DEFAULT_RULES
-else:
-    for key in CONFIG_RULES:
-        rul, content_url, chapter_selector = CONFIG_RULES[key]
-        RULES[key] = Rules(rul, content_url, chapter_selector)
+RULES = DEFAULT_RULES
+CONFIG_RULES = CONFIG.get('RULES', {})
+
+DOWNLOAD_RULES = dict()
+try:
+    HM = HanderMysql()
+    for data in HM.download_rules():
+        DOWNLOAD_RULES[data.domain] = Rules('0', eval(data.chapter_selector), eval(data.content_selector))
+except Exception as e:
+    DOWNLOAD_RULES = dict()
+
+RULES.update(DOWNLOAD_RULES)
+
+for key in CONFIG_RULES:
+    rul, content_url, chapter_selector = CONFIG_RULES[key]
+    RULES[key] = Rules(rul, content_url, chapter_selector)
