@@ -7,7 +7,7 @@ from sqlalchemy import create_engine
 from sqlalchemy import Column, Date, Integer, String, ForeignKey
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
-from setting import ENGINE
+from story_dl.setting import ENGINE
 # from rules import RULES
 # from datetime import datetime
 

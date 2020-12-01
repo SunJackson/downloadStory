@@ -1,22 +1,35 @@
 #!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 from PyQt5 import QtCore, QtGui
-import sys
 from PyQt5.QtCore import pyqtSignal, Qt
 from PyQt5.QtGui import QIcon
 from PyQt5.QtWidgets import QApplication, QMainWindow, QTableWidgetItem, QInputDialog, QFileDialog, QMessageBox
 import os
+import sys
+
 
 from story_dl.downloadStory import Ui_MainWindow
 from story_dl.function import check_path_exists
 from story_dl.handlerProcess import getSearchResultThread, downloadStoryHandler
 
 
-class EmittingStr(QtCore.QObject):
+class emitting_str(QtCore.QObject):
     textWritten = pyqtSignal(str)  # 定义一个发送str的信号
 
     def write(self, text):
         self.textWritten.emit(str(text))
+
+
+def get_filse_path(filename):
+    # 方法一（如果要将资源文件打包到app中，使用此法）
+    bundle_dir = getattr(sys, '_MEIPASS', os.path.abspath(os.path.dirname(__file__)))
+    path = os.path.join(bundle_dir, filename)
+    if os.path.exists(path):
+        return path
+    else:
+        return os.path.join('files', filename)
+    # 方法二获取路径可以，但如果打包资源好像不行。
+    # path = os.path.join(os.path.dirname(sys.argv[0]), filename)
 
 
 class ControlBoard(QMainWindow, Ui_MainWindow):
@@ -28,8 +41,8 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
         self.download_stop_flag = False
         self.is_proxy = self.checkBoxProxy.isChecked()
         self.thread_num = int(self.spinBoxThread.text()) or 1
-        sys.stdout = EmittingStr(textWritten=self.outputWritten)
-        sys.stderr = EmittingStr(textWritten=self.outputWritten)
+        sys.stdout = emitting_str(textWritten=self.output_written)
+        sys.stderr = emitting_str(textWritten=self.output_written)
         self.parse_novel_source_res = []
 
     def set_default(self):
@@ -61,7 +74,7 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
     def show_message(self, message):
         QMessageBox.warning(self, "警告", message, QMessageBox.Cancel)
 
-    def outputWritten(self, text):
+    def output_written(self, text):
         cursor = self.textBrowser.textCursor()
         cursor.movePosition(QtGui.QTextCursor.End)
         cursor.insertText(text)
@@ -88,8 +101,7 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
             is_parse_index = res.get('is_parse_index', 0)
 
             if res.get('is_parse', 0):
-                checkBox = QTableWidgetItem('【已解析】{}'.format(res.get('title', '未知')))
-                checkBox.setIcon(QIcon("files/check-line.png"))  # 设置Item的图标
+                checkBox = QTableWidgetItem('【√已解析】{}'.format(res.get('title', '未知')))
             else:
                 checkBox = QTableWidgetItem(res.get('title', '未知'))
             checkBox.setCheckState(Qt.Unchecked)

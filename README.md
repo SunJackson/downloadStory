@@ -13,7 +13,7 @@
 ### 未来实现功能
 1. 增加多个搜索引擎检索
 2. 检索结果智能剔除非章节目录链接
-3. 章节目录解析添加url自动识别，踢出掉非章节链接
+3. 章节目录解析添加url自动识别，剔除掉非章节链接
 4. 做成类似you-get
 
 ## 使用说明
@@ -27,7 +27,7 @@
 `pip install -r requirements.txt -i https://pypi.douban.com/simple`
 - 运行代码
 
-`python mainUI.py`（有UI界面）
+`python story-dl.py`（有UI界面）
 
 或者
 
