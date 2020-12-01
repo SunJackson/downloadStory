@@ -204,9 +204,9 @@ class downloadStoryHandler(QThread):
             with open(saved_path, 'w+', encoding='utf8') as wf:
                 for chapter_title, detail_url in story_chapter_list:
                     detail_content, status = get_novels_content(url=detail_url)
-                    print("获取 {} {}".format(chapter_title, status))
                     if not detail_content:
                         continue
+                    print("下载成功：{}【{}】".format(detail_url, status))
                     wf.write('{}\n'.format(re.sub(r'(章节|章|回|卷|\.)', '\g<1> ', chapter_title)))
                     wf.write('{}\n'.format(detail_content))
             print("成功下载小说:{}".format(saved_path))
