@@ -1,0 +1,43 @@
+{
+  "BLACK_DOMAIN": [
+    ""
+  ],
+  "REPLACE_RULES": {
+    "www.263zw.com": {
+      "old": "263zw.com/402770/",
+      "new": "263zw.com/402770/list/"
+    }
+  },
+  "ENGINE_PRIORITY": [
+    "so",
+    "baidu"
+  ],
+  "REPLACE_HTML_STRING": [
+    "&nbsp;"
+  ],
+  "CHAPTER_TAG": [
+    "a"
+  ],
+  "CONTENT_REPLACE": {
+    "\u3000\u3000": "\n",
+    "\u3000": "\n",
+    "加入书签": "",
+    "上一章": "",
+    "←": "",
+    "→": "",
+    "章节列表": "",
+    "下一章": "",
+    "顶点小说": ""
+  },
+  "RULES": {
+	"www.vipxs.la": [
+      "http://www.siluke.tw/",
+      {
+        "class": "box_con"
+      },
+      {
+        "id": "content"
+      }
+    ]
+  }
+}
