@@ -85,4 +85,5 @@ class HanderMysql:
 
 if __name__ == '__main__':
     HM = HanderMysql()
-    HM.download_rules()
+    for i in HM.download_rules():
+        print(i.domain)

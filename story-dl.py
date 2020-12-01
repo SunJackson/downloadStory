@@ -28,8 +28,8 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
         self.download_stop_flag = False
         self.is_proxy = self.checkBoxProxy.isChecked()
         self.thread_num = int(self.spinBoxThread.text()) or 1
-        # sys.stdout = EmittingStr(textWritten=self.outputWritten)
-        # sys.stderr = EmittingStr(textWritten=self.outputWritten)
+        sys.stdout = EmittingStr(textWritten=self.outputWritten)
+        sys.stderr = EmittingStr(textWritten=self.outputWritten)
         self.parse_novel_source_res = []
 
     def set_default(self):
