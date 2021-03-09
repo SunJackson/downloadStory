@@ -39,7 +39,9 @@
 
 2. Windows 直接下载 exe 使用
 
-    [小说下载工具.exe](https://github.com/SunJackson/downloadStory/releases/tag/0.1.0)
+下载地址：关注公众号【猿起缘落】，回复【小说下载】即可领取
+
+![gzh](https://github.com/SunJackson/coupons-tk/blob/master/data/gzh.jpg)
 
 ### config.json配置说明
 
@@ -88,3 +90,4 @@
   }
 }
 ```
+
