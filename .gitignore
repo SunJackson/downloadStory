@@ -109,3 +109,5 @@ saprk-warehouse/
 download/
 .vscode/
 setting.py
+
+.exe
