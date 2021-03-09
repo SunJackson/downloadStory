@@ -34,6 +34,9 @@
 
 `pyhton src/downloadStoryMain.py`（无UI界面）
 
+- 打包成exe
+`pyinstaller -F -w -i ./files/bitbug_favicon.ico story-dl.py`
+
 2. Windows 直接下载 exe 使用
 
     [小说下载工具.exe](https://github.com/SunJackson/downloadStory/releases/tag/0.1.0)

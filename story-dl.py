@@ -183,6 +183,7 @@ class ControlBoard(QMainWindow, Ui_MainWindow):
         if not self.search_name:
             self.show_message('请输入小说名！')
             return None
+        self.parse_novel_source_res.clear()
         self.GSRT = getSearchResultThread(self.search_name, search_type)
         self.tableWidget.clearContents()
         self.GSRT.result_dict_signal.connect(self.set_item_table_widget)
